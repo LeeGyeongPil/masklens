@@ -6,14 +6,22 @@ on:
   schedule:
     - cron: "17 3 * * 1"   # weekly: catch dependency drift
   workflow_dispatch:
+permissions:
+  contents: read
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.13"]
     steps:
       - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v10.4.0
-      - run: uv python install
-      - run: uv sync --locked
-      - run: uv run pytest -q
+      - uses: astral-sh/setup-uv@v10.3.3
+      - run: uv python install ${{ matrix.python }}
+      - run: uv sync --locked --python ${{ matrix.python }}
+      - run: uv run --python ${{ matrix.python }} pytest -q
         env:
           HF_HUB_OFFLINE: "1"
+      - run: uv build
