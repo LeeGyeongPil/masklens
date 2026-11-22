@@ -1,0 +1,12 @@
+{
+  "tokenizer_class": "PreTrainedTokenizerFast",
+  "bos_token": null,
+  "eos_token": "<|im_end|>",
+  "pad_token": "<|endoftext|>",
+  "additional_special_tokens": [
+    "<|im_start|>"
+  ],
+  "clean_up_tokenization_spaces": false,
+  "model_max_length": 2048,
+  "chat_template": "{%- for message in messages %}{{- '<|im_start|>' + message.role + '\\n' + message.content + '<|im_end|>' + '\\n' }}{%- endfor %}{%- if add_generation_prompt %}{{- '<|im_start|>assistant\\n' }}{%- endif %}"
+}
