@@ -5,6 +5,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-11-23
+
+### Fixed
+- Tests no longer depend on the terminal width, color settings or locale of the shell that runs them (the `--help` check failed when `COLUMNS` was narrow).
+- CI uses only GitHub-maintained actions on Node 24 (`actions/checkout@v6`, `actions/setup-python@v6`), a pinned uv (`0.13.6`) and `HF_HUB_OFFLINE=1` for every step.
+
 ## [0.1.1] - 2026-11-23
 
 ### Fixed

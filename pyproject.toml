@@ -1,6 +1,6 @@
 [project]
 name = "masklens"
-version = "0.1.1"
+version = "0.1.2"
 description = "Preflight check for SFT loss masks: verify which tokens a chat template, tokenizer and labels will actually train on, before you spend GPU time."
 readme = "README.md"
 license = { text = "MIT" }

@@ -1,3 +1,3 @@
 """masklens: preflight check for SFT loss masks."""
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
