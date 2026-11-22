@@ -36,12 +36,22 @@ def test_help_in_both_languages(capsys, lang, needle, other):
     with pytest.raises(SystemExit) as exc:
         main(["--lang", lang, "--help"])
     assert exc.value.code == 0
-    out = capsys.readouterr().out
+    # argparse 는 터미널 폭(COLUMNS)에 따라 줄을 바꾸므로, 공백을 하나로 합친 뒤 비교한다
+    out = " ".join(capsys.readouterr().out.split())
     assert needle in out and other not in out
     with pytest.raises(SystemExit):
         main(["check", "--lang", lang, "--help"])
-    sub = capsys.readouterr().out
+    sub = " ".join(capsys.readouterr().out.split())
     assert "{% generation %}" in sub  # the % sign survives argparse help formatting
+
+
+@pytest.mark.parametrize("columns", ["40", "60", "200"])
+def test_help_survives_any_terminal_width(capsys, monkeypatch, columns):
+    # CI 러너·작은 터미널처럼 폭이 달라도 도움말 문구 검사가 깨지지 않아야 한다
+    monkeypatch.setenv("COLUMNS", columns)
+    with pytest.raises(SystemExit):
+        main(["check", "--lang", "en", "--help"])
+    assert "{% generation %}" in " ".join(capsys.readouterr().out.split())
 
 
 @pytest.mark.parametrize(("lang", "needle"), [("en", "RULE"), ("ko", "규칙")])

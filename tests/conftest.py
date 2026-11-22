@@ -20,6 +20,22 @@ CHAT = ROOT / "examples" / "chat.jsonl"
 FIXTURES = ROOT / "tests" / "fixtures"
 
 
+@pytest.fixture(autouse=True)
+def _stable_environment(monkeypatch):
+    """Make every test independent of the shell or CI runner it runs in.
+
+    로컬 셸과 CI 러너의 차이(터미널 폭, 색 강제, 언어 변수, 실제 토크나이저 경로)가
+    출력 문자열 비교를 흔들지 않도록 테스트마다 같은 환경으로 맞춘다.
+    """
+    monkeypatch.setenv("COLUMNS", "100")  # argparse 줄바꿈 폭 고정
+    monkeypatch.setenv("NO_COLOR", "1")  # Python 3.14+ argparse 색과 masklens 색 끄기
+    monkeypatch.setenv("PYTHON_COLORS", "0")
+    monkeypatch.delenv("FORCE_COLOR", raising=False)
+    for name in ("MASKLENS_LANG", "LC_ALL", "LC_MESSAGES", "LANG"):
+        monkeypatch.delenv(name, raising=False)  # 언어는 각 테스트가 --lang·환경변수로 직접 정한다
+    monkeypatch.setenv("HF_HUB_OFFLINE", "1")
+
+
 @pytest.fixture(scope="session")
 def tok():
     return load_tokenizer(str(TOKENIZER_DIR))
