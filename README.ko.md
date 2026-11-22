@@ -25,7 +25,7 @@ uv sync
 
 이후 명령은 `uv run masklens ...` 로 실행합니다. 최소 리눅스 이미지에는 `git` 과 `curl` 도 필요합니다.
 
-설치 확인은 `uv run masklens --version` 입니다(`masklens 0.1.0` 출력).
+설치 확인은 `uv run masklens --version` 입니다(`masklens 0.1.1` 출력).
 
 아래 명령은 `examples/tiny-chatml/` 의 **연습용 토크나이저**를 씁니다. `scripts/make_tiny_tokenizer.py` 로 만든 시연용 작은 토크나이저(ChatML 형식, 어휘 400개)이며 실제 모델의 토크나이저가 아니라서 토큰 수가 실제와 다릅니다. 실제 작업에서는 모델의 토크나이저 폴더나 Hub ID 를 넘기세요. 테스트는 아무것도 내려받지 않습니다.
 
@@ -295,7 +295,7 @@ uv run masklens check examples/tiny-chatml examples/chat.jsonl --template exampl
 ```json
 {
   "versions": {
-    "masklens": "0.1.0",
+    "masklens": "0.1.1",
     "transformers": "5.24.0",
     "tokenizers": "0.23.3"
   },
