@@ -27,7 +27,7 @@ Then run commands with `uv run masklens ...`. On a minimal Linux image you also 
 
 The commands below use the **practice tokenizer** in `examples/tiny-chatml/`. It is a tiny tokenizer built by `scripts/make_tiny_tokenizer.py` for demonstration (a ChatML-style vocabulary of 400 entries). It is not the tokenizer of a real model, so token counts differ from a real one. For real work, pass your model's tokenizer folder or Hub ID instead. The tests do not download anything.
 
-Check the install with `uv run masklens --version` (prints `masklens 0.1.2`).
+Check the install with `uv run masklens --version` (prints `masklens 0.1.3`).
 
 ## Quick start
 ```bash
@@ -297,7 +297,7 @@ uv run masklens check examples/tiny-chatml examples/chat.jsonl --template exampl
 ```json
 {
   "versions": {
-    "masklens": "0.1.2",
+    "masklens": "0.1.3",
     "transformers": "5.24.0",
     "tokenizers": "0.23.3"
   },

@@ -3,7 +3,10 @@
 All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.1.3] - 2026-11-23
+
+### Changed
+- CI prints the runner environment and every test outcome (`pytest -rA -v --tb=long`), and lists installed packages when a step fails.
 
 ## [0.1.2] - 2026-11-23
 
