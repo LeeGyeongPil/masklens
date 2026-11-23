@@ -3,6 +3,14 @@
 All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [0.1.4] - 2026-11-23
+
+### Changed
+- CI is a single job on Python 3.13 that installs the pinned `requirements-ci.txt` with pip and runs the offline tests; the scheduled run, the Python matrix, the uv setup and the diagnostic steps were removed.
+
+### Added
+- `requirements-ci.txt` (exported from `uv.lock`) and `tests/test_ci_workflow.py`, which checks the workflow shape and that the pins match the lock file.
+
 ## [0.1.3] - 2026-11-23
 
 ### Changed
