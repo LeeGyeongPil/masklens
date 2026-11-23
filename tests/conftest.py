@@ -24,8 +24,9 @@ FIXTURES = ROOT / "tests" / "fixtures"
 def _stable_environment(monkeypatch):
     """Make every test independent of the shell or CI runner it runs in.
 
-    로컬 셸과 CI 러너의 차이(터미널 폭, 색 강제, 언어 변수, 실제 토크나이저 경로)가
-    출력 문자열 비교를 흔들지 않도록 테스트마다 같은 환경으로 맞춘다.
+    Differences between a local shell and a CI runner (terminal width, forced
+    color, language variables) must not change output-string comparisons, so each
+    test gets the same environment.
     """
     monkeypatch.setenv("COLUMNS", "100")  # argparse 줄바꿈 폭 고정
     monkeypatch.setenv("NO_COLOR", "1")  # Python 3.14+ argparse 색과 masklens 색 끄기
